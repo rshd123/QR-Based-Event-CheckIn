@@ -44,6 +44,7 @@ const allEvents = async (req,res) => {
         console.error("Error fetching all events: "+err);
     }
 }
+
 export { allEvents };
 
 const registerEvent = async (req,res)=>{
@@ -109,6 +110,7 @@ const registerEvent = async (req,res)=>{
         console.error("Error registering for event: "+err);
     }
 }
+
 export { registerEvent };
 
 const getRegisteredEvents = async (req,res) => {
@@ -138,4 +140,40 @@ const getRegisteredUsers = async (req,res) => {
         console.error("Error fetching registered users: "+err);
     }
 }
+
 export { getRegisteredUsers };  
+
+const getCheckInStats = async (req,res) => {
+    try {
+        const {eventId} = req.params;
+        
+        //retreiving total users
+        const totalUsers = await Register.countDocuments({event: eventId});
+
+        //retreiving number of checked-In users
+        const checkedIdUsers = await Register.countDocuments({event: eventId, checkedIn: true});
+
+        return res.status(201).json({total_users: totalUsers, check_In_Users: checkedIdUsers});
+    } catch (err) {
+        console.error('error fetching check-In stats: '+err);
+    }
+}
+
+export { getCheckInStats };
+
+const exportAttendeeList = async (req,res)=>{
+    try {
+        const events = await Register.find({}).populate('user', 'name email').populate('event', 'title location date time');
+
+        if(!events || events.length === 0) {
+            return res.status(401).json({ message: "No registered events" });
+        }
+
+        return res.status(201).json(events);
+
+    } catch (err) {
+        console.error("Error fetching all registered events: "+ err)
+    }
+}
+
+export {exportAttendeeList};

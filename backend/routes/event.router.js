@@ -4,23 +4,31 @@ import { createEvent } from '../controllers/eventController.js';
 import { registerEvent } from '../controllers/eventController.js';
 import { getRegisteredEvents } from '../controllers/eventController.js';
 import { getRegisteredUsers } from '../controllers/eventController.js';
+import { getCheckInStats } from '../controllers/eventController.js';
+import { exportAttendeeList } from '../controllers/eventController.js';
 
 const eventRouter = express.Router();
 
-//list of all events
+// List of all events
 eventRouter.get('/all', allEvents);
 
-//creating new Event
+// Creating new Event
 eventRouter.post('/:userId/create', createEvent);
 
-//registering for an event
+// All Attendee List
+eventRouter.get('/register/all', exportAttendeeList)
+
+// Registering for an event
 eventRouter.post('/:eventId/register/:userId', registerEvent);
 
-//Listing all registered events for a user
+// Generating all registered events for a user
 eventRouter.get('/:userId/register/all', getRegisteredEvents);
 
-//listing all registered users for an event
+// Generating all registered users for an event
 eventRouter.get('/all/:eventId', getRegisteredUsers);
+
+//Generating CheckInStats
+eventRouter.get('/checkin/:eventId',getCheckInStats);
 
 
 

@@ -23,6 +23,10 @@ const registerSchema = new Schema({
     qrCode: {
         type: String, // Store the QR code as a string (e.g., base64 or URL)
         required: true,
+    },
+    checkedIn: {
+        type: Boolean,
+        default: false,
     }
 });
 
