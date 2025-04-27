@@ -60,4 +60,18 @@ const Login = async (req, res) => {
 
 export {Login};
 
+const allUsers = async (req, res) => {
+    try {
+        const users = await User.find({});
+        if (users.length === 0) {
+            return res.status(201).json({ message: "No users !" });
+        }
+        return res.status(200).json(users);
+    } catch (err) {
+        console.error("Error fetching all users: "+err);
+    }
+};
+
+export {allUsers};
+
 
