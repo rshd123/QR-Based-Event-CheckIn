@@ -20,8 +20,3 @@ This is a backend system for a QR-based event check-in application. It allows ev
 - QR Code Library (`qrcode`)
 - Nodemailer
 
-### Setup Instructions
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/your-username/event-check-in.git
-
