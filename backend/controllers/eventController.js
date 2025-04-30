@@ -71,8 +71,8 @@ const registerEvent = async (req,res)=>{
         const transporter = nodemailer.createTransport({
             service: 'gmail',
             auth: {
-                user: process.env.EMAIL, // authenticated email
-                pass: process.env.EMAIL_PASSWORD
+                user: process.env.EMAIL, // authenticated email //add your mail here
+                pass: process.env.EMAIL_PASSWORD // email's password //add your password here
             }
         });
 
