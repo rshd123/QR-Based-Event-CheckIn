@@ -18,5 +18,7 @@ This is a backend system for a QR-based event check-in application. It allows ev
 - MongoDB
 - Mongoose
 - QR Code Library (`qrcode`)
-- Nodemailer
+- Nodemailer (use your authenticated mail and password inside eventController)
+
+
 

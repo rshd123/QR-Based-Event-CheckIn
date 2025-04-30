@@ -15,6 +15,7 @@ const createEvent = async (req, res) => {
             return res.status(401).json({ message: "User must be an Admin" });
         }
         const newEvent = new Event({
+            admin: userId,
             title,
             description,
             location,
