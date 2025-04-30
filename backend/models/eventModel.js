@@ -1,7 +1,5 @@
 import mongoose from "mongoose";
 import { Schema } from "mongoose";
-import { validate } from "uuid";
-import User from "./userModel.js";
 
 const eventSchema = new Schema({
 
